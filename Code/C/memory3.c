@@ -3,29 +3,47 @@
 
 int main(int argc, const char **argv) {
   int n;
-  double matrix1[2][3];
-  for (int i=0; i<2; i++)
-    for (int j=0; j<3; j++)
-      matrix1[i][j]=i;
+  double *matrix1 =0;
+  double *matrix2 =0;
 
-  double **matrix2;
-  matrix2 = (double **)malloc(2*sizeof(double *));
-  for (int i=0; i<2; i++) {
-    matrix2[i] = (double *)malloc(3*sizeof(double));
-    for (int j=0; j<3; j++)
-      matrix2[i][j] = i;
-  }
+  printf("enter n: ");
+  scanf("%d", &n);
   
-  for (int i=0; i<2; i++) {
-    for (int j=0; j<3; j++)
-      printf("(%d,%d) %.4f %.4f\n", i,j, matrix1[i][j], matrix2[i][j]);
+  int numRows = n; 
+  int numColumns=n;
+
+  // allocate memory & set the data: ROW MAJOR ORDER
+  matrix1 = (double *)malloc(numRows*numCols*sizeof(double *));
+  
+  for (int i=0; i<numRows; i++) {
+    for (int j=0; j<numCols; j++)
+      matrix1[i*numCols + j] = i;  // matrix1[i][j]=i;
   }
 
-  double *ptr = matrix1;
-  for (int i=0; i<6; i++)
-    printf("(%d) %.4f\n", i, *ptr++);
+  free(matrix1);
 
-  ptr = matrix2;
-  for (int i=0; i<6; i++)
-    printf("(%d) %.4f\n", i, *ptr++);
+  // allocate memory & set the data: COLUMN MAJOR ORDER
+  matrix1 = (double *)malloc(n*n*sizeof(double *));
+  
+  for (int i=0; i<numRows; i++) {
+    for (int j=0; j<numCols; j++)
+      matrix1[i+j*numCols] = i;  // matrix1[i][j]=i;
+  }
+
+  // but above has likely poor cache performance
+  for (int j=0; j<numCols; j++)
+    for (int i=0; i<numRows; i++) {
+      matrix1[i+j*numCols] = i;  // matrix1[i][j]=i;
+  }
+
+  // while above has good ordering, below may be faster
+  double dataPtr = matrix1;
+  for (int j=0; j<numCols; j++)
+    for (int i=0; i<numRows; i++) {
+      *dataPtr++ = i;
+  }
+
+  // free the data
+  free(matrix2);
+
 }
