@@ -1,10 +1,10 @@
 #include <stdio.h>
 int main() {
   int x=10, y=20;
-  int *px = 0;
+  int *ptrX = 0;
 
-  px = &x;
-  y = *px + 1;
-  printf("x: %d y: %d \n",x,y);
+  ptrX = &x;
+  y = *ptrX + x;
+  printf("%d + %d = %d \n",x,x,y);
   return(0);
 }
