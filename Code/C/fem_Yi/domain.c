@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "domain.h"
 #include "node.h"
+#include "constraint.h"
 
 void domainPrint(Domain *theDomain) {
   printf("The Nodes:\n");

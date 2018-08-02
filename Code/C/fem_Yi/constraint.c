@@ -4,7 +4,7 @@
 void constraintPrint(Constraint *theConstraint){
   printf("Node : %d ", theConstraint->tag);
   if (theConstraint->isConstraint == 1) {
-       printf("is constraint \n");} else{printf("is not constraint \n");}
+       printf("is constrained \n");} else{printf("is not constrained \n");}
   
 }
 
