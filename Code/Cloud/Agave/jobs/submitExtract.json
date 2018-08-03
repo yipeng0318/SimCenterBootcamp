@@ -2,7 +2,7 @@
    "name":"extract directory",
    "appId":"extract-0.1u1",
    "parameters":{
-     "inputFile":"tg457427/dir1/OpenSeesExampleMP.tar.gz"
+     "inputFile":"pengyi/dir1/submitCompress.zip"
    },
    "notifications": [
      {"url" : "fmckenna@berkeley.edu",
