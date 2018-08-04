@@ -49,3 +49,5 @@ Makefile
 Code/Qt/Example1/Example1.pro.user
 Code/Qt/.DS_Store
 *.stash
+Code/Qt/Example1/.DS_Store
+Code/Qt/Example2/.DS_Store
